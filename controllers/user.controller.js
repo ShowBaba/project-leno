@@ -32,6 +32,9 @@ exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await User.find({ email });
+    const {
+      id, fullname
+    } = user
     if (user.length !== 0 && comparePassword(password, user[0].password)) {
       const token = jwtToken.createToken(user);
       res.statusCode = 200;
@@ -40,6 +43,11 @@ exports.login = async (req, res, next) => {
         success: true,
         message: 'Login Succesfully',
         token,
+        userData: {
+          id,
+          email,
+          fullname
+        }
       });
     } else {
       res.statusCode = 400;

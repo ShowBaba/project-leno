@@ -2,7 +2,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
-// const tokenBlacklist = require('../models/tokenBlacklist');
+const tokenBlacklist = require('../models/tokenBlacklist');
 
 dotenv.config();
 
@@ -18,3 +18,5 @@ exports.jwtToken = {
 exports.hashPassword = (password) => bcrypt.hashSync(password, 10);
 
 exports.comparePassword = (password, hash) => bcrypt.compareSync(password, hash);
+
+
