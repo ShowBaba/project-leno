@@ -36,14 +36,14 @@ app.use('/api/v1/auth', usersRouter);
 
 // set up a wildcard route
 app.get('*', (req, res) => {
-  res.redirect('/index');
+  res.redirect('/api/v1');
 });
 
 // eslint-disable-next-line no-unused-vars
 const localUrl = process.env.CONNECTION_STRING_DEV;
-console.log(localUrl)
+console.log(localUrl);
 const liveUrl = process.env.DB_CONNECTION;
-const connect = mongoose.connect(localUrl, {
+const connect = mongoose.connect(liveUrl, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useFindAndModify: false,
